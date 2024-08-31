@@ -40,7 +40,7 @@
 
     .car-button {
         font-size: 1em;
-        padding: 10px 20px;
+        padding: 10px;
         cursor: pointer;
         border: none;
         background-size: cover;
@@ -48,19 +48,38 @@
         background-repeat: no-repeat;
         width: 100%; /* Κάνει το κουμπί να καταλαμβάνει το πλήρες πλάτος του container */
         height: 120px; /* Ύψος του κουμπιού */
+        background-color: transparent; /* Αφαιρεί οποιοδήποτε προεπιλεγμένο χρώμα φόντου */
     }
 
     .actions {
         margin-top: 20px;
     }
 
-    /* Εξασφαλίζει καλύτερη απόδοση σε μικρές οθόνες */
+    .action-button {
+        font-size: 0.8em; /* Μικρότερο μέγεθος κειμένου */
+        padding: 10px 15px; /* Padding γύρω από το κείμενο */
+        border: 2px solid #333; /* Πρόσθεσε περίγραμμα */
+        border-radius: 50%; /* Στρογγυλεμένα κουμπιά */
+        background-color: #fff; /* Λευκό χρώμα φόντου */
+        cursor: pointer; /* Εμφανίζει το χέρι για να δείξει ότι είναι clickable */
+        margin: 5px; /* Απόσταση μεταξύ των κουμπιών */
+    }
+
+    .action-button:hover {
+        background-color: #f0f0f0; /* Αλλάζει το φόντο όταν περνάς το ποντίκι */
+    }
+
     @media (max-width: 600px) {
         .car-button {
             height: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
         }
+
+        .action-button {
+            padding: 8px 12px; /* Μικρότερα κουμπιά δράσης για μικρότερες οθόνες */
+        }
     }
 </style>
+
 
 </head>
 <body>
@@ -111,11 +130,12 @@
     </div>
 
     <!-- Κουμπιά δράσης για Undo, Redo, και Erase -->
-    <div class="actions">
-        <button class="action-button" onclick="undo()">Undo</button>
-        <button class="action-button" onclick="redo()">Redo</button>
-        <button class="action-button" onclick="erase()">Erase</button>
-    </div>
+<div class="actions">
+    <button class="action-button" onclick="undo()">Undo</button>
+    <button class="action-button" onclick="redo()">Redo</button>
+    <button class="action-button" onclick="erase()">Erase</button>
+</div>
+
 
     <script>
         // Αρχικοποίηση πόντων και ιστορικού ενεργειών από το Local Storage
