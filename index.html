@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Παιχνίδι Καταμέτρησης Suzuki Swift</title>
+    <style>
+        /* Βασικό στυλ για τη σελίδα */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .counter {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .car-button, .action-button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .car-image {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .car-container {
+            margin: 10px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Παιχνίδι Καταμέτρησης Suzuki Swift</h1>
+    <div class="counter" id="pointsCounter">Πόντοι: 0</div>
+
+    <!-- Κουμπιά και εικόνες για διαφορετικά αυτοκίνητα -->
+    <div class="container">
+        <!-- Regular -->
+        <div class="car-container">
+            <img src="regular.jpg" alt="Regular Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('regular')">Regular (1p)</button>
+        </div>
+        <!-- Sport -->
+        <div class="car-container">
+            <img src="sport.jpg" alt="Sport Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('sport')">Sport (2p)</button>
+        </div>
+        <!-- Super Rare Colors -->
+        <div class="car-container">
+            <img src="purple.jpg" alt="Purple Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('purple')">Purple (20p)</button>
+        </div>
+        <div class="car-container">
+            <img src="brown.jpg" alt="Brown Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('brown')">Brown (15p)</button>
+        </div>
+        <div class="car-container">
+            <img src="pink.jpg" alt="Pink Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('pink')">Pink (10p)</button>
+        </div>
+        <!-- Rare Colors -->
+        <div class="car-container">
+            <img src="turquoise.jpg" alt="Turquoise Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('turquoise')">Turquoise (8p)</button>
+        </div>
+        <div class="car-container">
+            <img src="green.jpg" alt="Green Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('green')">Green (7p)</button>
+        </div>
+        <div class="car-container">
+            <img src="orange.jpg" alt="Orange Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('orange')">Orange (6p)</button>
+        </div>
+        <div class="car-container">
+            <img src="yellow.jpg" alt="Yellow Swift" class="car-image">
+            <button class="car-button" onclick="addPoints('yellow')">Yellow (5p)</button>
+        </div>
+    </div>
+
+    <!-- Κουμπιά δράσης για Undo, Redo, και Erase -->
+    <div class="actions">
+        <button class="action-button" onclick="undo()">Undo</button>
+        <button class="action-button" onclick="redo()">Redo</button>
+        <button class="action-button" onclick="erase()">Erase</button>
+    </div>
+
+    <script>
+        // Αρχικοποίηση πόντων και ιστορικού ενεργειών από το Local Storage
+        let points = parseInt(localStorage.getItem('points')) || 0;
+        let history = JSON.parse(localStorage.getItem('history')) || [];
+        let redoStack = [];
+
+        document.getElementById('pointsCounter').textContent = 'Πόντοι: ' + points;
+
+        function addPoints(carType) {
+            let pointsToAdd = 0;
+
+            switch (carType) {
+                case 'regular':
+                    pointsToAdd = 1;
+                    break;
+                case 'sport':
+                    pointsToAdd = 2;
+                    break;
+                case 'purple':
+                    pointsToAdd = 20;
+                    break;
+                case 'brown':
+                    pointsToAdd = 15;
+                    break;
+                case 'pink':
+                    pointsToAdd = 10;
+                    break;
+                case 'turquoise':
+                    pointsToAdd = 8;
+                    break;
+                case 'green':
+                    pointsToAdd = 7;
+                    break;
+                case 'orange':
+                    pointsToAdd = 6;
+                    break;
+                case 'yellow':
+                    pointsToAdd = 5;
+                    break;
+            }
+
+            // Προσθέτουμε τους πόντους και ενημερώνουμε το ιστορικό ενεργειών
+            points += pointsToAdd;
+            history.push(pointsToAdd);
+            redoStack = [];
+            updateDisplay();
+            saveState();
+        }
+
+        function undo() {
+            if (history.length > 0) {
+                const lastPoints = history.pop();
+                points -= lastPoints;
+                redoStack.push(lastPoints);
+                updateDisplay();
+                saveState();
+            }
+        }
+
+        function redo() {
+            if (redoStack.length > 0) {
+                const redoPoints = redoStack.pop();
+                points += redoPoints;
+                history.push(redoPoints);
+                updateDisplay();
+                saveState();
+            }
+        }
+
+        function erase() {
+            points = 0;
+            history = [];
+            redoStack = [];
+            updateDisplay();
+            saveState();
+        }
+
+        function updateDisplay() {
+            document.getElementById('pointsCounter').textContent = 'Πόντοι: ' + points;
+        }
+
+        function saveState() {
+            localStorage.setItem('points', points);
+            localStorage.setItem('history', JSON.stringify(history));
+        }
+    </script>
+</body>
+</html>
