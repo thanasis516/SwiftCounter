@@ -5,51 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Count The Swifts</title>
     <style>
-        /* Βασικό στυλ για τη σελίδα */
-        body {
+    /* Βασικό στυλ για τη σελίδα */
+    body {
         font-family: Arial, sans-serif;
         text-align: center;
         padding: 20px;
-        background-image: url('background.jpg'); /* Εδώ βάζεις το όνομα της εικόνας σου */
-        background-size: cover; /* Προσαρμόζει την εικόνα για να καλύψει ολόκληρη την οθόνη */
-        background-position: center; /* Κεντρώνει την εικόνα */
-        background-repeat: no-repeat; /* Αποτρέπει την επανάληψη της εικόνας */
+        background-image: url('background.jpg'); /* Εικόνα φόντου */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .counter {
+        font-size: 2em;
+        margin: 20px 0;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap; /* Επιτρέπει την αλλαγή γραμμής όταν χρειάζεται */
+        justify-content: center; /* Κεντρώνει τα κουμπιά οριζόντια */
+    }
+
+    .car-button {
+        font-size: 1em;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100px; /* Ύψος του κουμπιού */
+        height: 100px;
+    }
+
+    .car-container {
+        flex: 1 1 30%; /* Κάνει το κουμπί να καταλαμβάνει περίπου το 30% του πλάτους */
+        max-width: 150px; /* Μέγιστο πλάτος των κουμπιών */
+        box-sizing: border-box; /* Περιλαμβάνει το padding και το border στο πλάτος */
+        margin: 10px; /* Εξωτερική απόσταση γύρω από το κουμπί */
+    }
+
+    .actions {
+        margin-top: 20px;
+    }
+
+    /* Εξασφαλίζει καλύτερη απόδοση σε μικρές οθόνες */
+    @media (max-width: 600px) {
+        .car-button {
+            width: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
+            height: 80px;
         }
-        h1 {
-            color: #333;
-        }
-        .counter {
-            font-size: 2em;
-            margin: 20px 0;
-        }
-        .car-button, .action-button {
-            font-size: 1em;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100px; /* Ανάλογα με το μέγεθος της εικόνας */
-            height: 100px; /* Ανάλογα με το μέγεθος της εικόνας */
-        }
-        .car-image {
-            display: block;
-            margin: 0 auto;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .car-container {
-            margin: 10px;
-        }
-        .actions {
-            margin-top: 20px;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <h1>Count The Swifts</h1>
