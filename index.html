@@ -4,87 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Count The Swifts</title>
-<style>
-    /* Βασικό στυλ για τη σελίδα */
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 20px;
-        background-image: url('background.jpg'); /* Εικόνα φόντου */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+    <style>
+        /* Βασικό στυλ για τη σελίδα */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url('background.jpg'); /* Εικόνα φόντου */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-    h1 {
-        color: #333;
-    }
+        h1 {
+            color: #fff; /* Λευκό χρώμα για τον τίτλο */
+        }
 
-    .counter {
-        font-size: 2em;
-        margin: 20px 0;
-    }
+        .counter {
+            font-size: 2em;
+            color: #fff; /* Λευκό χρώμα για τον μετρητή πόντων */
+            margin: 20px 0;
+        }
 
-    .container {
-        display: flex;
-        flex-wrap: wrap; /* Επιτρέπει την αλλαγή γραμμής όταν χρειάζεται */
-        justify-content: center; /* Κεντρώνει τα κουμπιά οριζόντια */
-        gap: 10px; /* Απόσταση μεταξύ των κουμπιών */
-    }
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Επιτρέπει την αλλαγή γραμμής όταν χρειάζεται */
+            justify-content: center; /* Κεντρώνει τα κουμπιά οριζόντια */
+            gap: 10px; /* Απόσταση μεταξύ των κουμπιών */
+        }
 
-    .car-container {
-        flex: 1 1 30%; /* Κάνει το κουμπί να καταλαμβάνει περίπου το 30% του πλάτους του container */
-        max-width: 150px; /* Μέγιστο πλάτος των κουμπιών */
-        box-sizing: border-box; /* Περιλαμβάνει το padding και το border στο πλάτος */
-    }
+        .car-container {
+            flex: 1 1 30%; /* Κάνει το κουμπί να καταλαμβάνει περίπου το 30% του πλάτους του container */
+            max-width: 150px; /* Μέγιστο πλάτος των κουμπιών */
+            box-sizing: border-box; /* Περιλαμβάνει το padding και το border στο πλάτος */
+        }
 
-    .car-button {
-        font-size: 1em;
-        padding: 10px;
-        cursor: pointer;
-        border: none;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 100%; /* Κάνει το κουμπί να καταλαμβάνει το πλήρες πλάτος του container */
-        height: 120px; /* Ύψος του κουμπιού */
-        background-color: transparent; /* Αφαιρεί οποιοδήποτε προεπιλεγμένο χρώμα φόντου */
-    }
-
-    .actions {
-        margin-top: 20px;
-    }
-
-    .action-button {
-        font-size: 0.8em; /* Μικρότερο μέγεθος κειμένου */
-        padding: 10px 15px; /* Padding γύρω από το κείμενο */
-        border: 2px solid #333; /* Πρόσθεσε περίγραμμα */
-        border-radius: 50%; /* Στρογγυλεμένα κουμπιά */
-        background-color: #fff; /* Λευκό χρώμα φόντου */
-        cursor: pointer; /* Εμφανίζει το χέρι για να δείξει ότι είναι clickable */
-        margin: 5px; /* Απόσταση μεταξύ των κουμπιών */
-    }
-
-    .action-button:hover {
-        background-color: #f0f0f0; /* Αλλάζει το φόντο όταν περνάς το ποντίκι */
-    }
-
-    @media (max-width: 600px) {
         .car-button {
-            height: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
+            font-size: 1em;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%; /* Κάνει το κουμπί να καταλαμβάνει το πλήρες πλάτος του container */
+            height: 120px; /* Ύψος του κουμπιού */
+            background-color: transparent; /* Αφαιρεί οποιοδήποτε προεπιλεγμένο χρώμα φόντου */
+        }
+
+        .car-button + p {
+            color: #fff; /* Λευκό χρώμα για το κείμενο κάτω από τα κουμπιά */
+            margin: 5px 0 0; /* Απόσταση πάνω από το κείμενο */
+        }
+
+        .actions {
+            margin-top: 20px;
         }
 
         .action-button {
-            padding: 8px 12px; /* Μικρότερα κουμπιά δράσης για μικρότερες οθόνες */
+            font-size: 0.8em; /* Μικρότερο μέγεθος κειμένου */
+            padding: 10px 15px; /* Padding γύρω από το κείμενο */
+            border: 2px solid #333; /* Πρόσθεσε περίγραμμα */
+            border-radius: 50%; /* Στρογγυλεμένα κουμπιά */
+            background-color: #fff; /* Λευκό χρώμα φόντου */
+            color: #333; /* Χρώμα γραμματοσειράς για τα κουμπιά δράσης */
+            cursor: pointer; /* Εμφανίζει το χέρι για να δείξει ότι είναι clickable */
+            margin: 5px; /* Απόσταση μεταξύ των κουμπιών */
         }
-    }
-</style>
 
+        .action-button:hover {
+            background-color: #f0f0f0; /* Αλλάζει το φόντο όταν περνάς το ποντίκι */
+        }
 
+        .footer {
+            margin-top: 20px; /* Απόσταση πάνω από το footer */
+            color: #fff; /* Λευκό χρώμα για το κείμενο του footer */
+            font-size: 1.2em; /* Μεγαλύτερο μέγεθος γραμματοσειράς για το footer */
+        }
+
+        .footer .created-by {
+            font-size: 1.5em; /* Διπλάσιο μέγεθος γραμματοσειράς για "Created by" */
+            font-weight: bold; /* Έντονα γράμματα για το "Created by" */
+            margin-bottom: 5px; /* Απόσταση κάτω από το "Created by" */
+        }
+
+        .footer .names {
+            font-size: 1.2em; /* Ελαφρώς μικρότερο μέγεθος γραμματοσειράς για τα ονόματα */
+        }
+
+        @media (max-width: 600px) {
+            .car-button {
+                height: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
+            }
+
+            .action-button {
+                padding: 8px 12px; /* Μικρότερα κουμπιά δράσης για μικρότερες οθόνες */
+            }
+
+            .footer {
+                font-size: 1em; /* Μικρότερο μέγεθος γραμματοσειράς για μικρότερες οθόνες */
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Count The Swifts</h1>
-    <div class="counter" id="pointsCounter">Πόντοι: 0</div>
+    <div class="counter" id="pointsCounter">Total Points: 0</div>
 
     <!-- Κουμπιά και εικόνες για διαφορετικά αυτοκίνητα, ταξινομημένα κατά αύξουσα σειρά πόντων -->
     <div class="container">
@@ -130,12 +155,17 @@
     </div>
 
     <!-- Κουμπιά δράσης για Undo, Redo, και Erase -->
-<div class="actions">
-    <button class="action-button" onclick="undo()">Undo</button>
-    <button class="action-button" onclick="redo()">Redo</button>
-    <button class="action-button" onclick="erase()">Erase</button>
-</div>
-
+    <div class="actions">
+        <button class="action-button" onclick="undo()">Undo</button>
+        <button class="action-button" onclick="redo()">Redo</button>
+        <button class="action-button" onclick="erase()">Erase</button>
+    </div>
+    
+    <!-- Footer με την υπογραφή δημιουργίας -->
+    <div class="footer">
+        <div class="created-by">Created by:</div>
+        <div class="names">Athanasios Papafilippou & Kyriaki Georgopoulou</div>
+    </div>
 
     <script>
         // Αρχικοποίηση πόντων και ιστορικού ενεργειών από το Local Storage
@@ -143,7 +173,7 @@
         let history = JSON.parse(localStorage.getItem('history')) || [];
         let redoStack = [];
 
-        document.getElementById('pointsCounter').textContent = 'Πόντοι: ' + points;
+        document.getElementById('pointsCounter').textContent = 'Total Points: ' + points;
 
         function addPoints(carType) {
             let pointsToAdd = 0;
@@ -176,6 +206,8 @@
                 case 'yellow':
                     pointsToAdd = 5;
                     break;
+                default:
+                    pointsToAdd = 0;
             }
 
             // Προσθέτουμε τους πόντους και ενημερώνουμε το ιστορικό ενεργειών
@@ -215,7 +247,7 @@
         }
 
         function updateDisplay() {
-            document.getElementById('pointsCounter').textContent = 'Πόντοι: ' + points;
+            document.getElementById('pointsCounter').textContent = 'Total Points: ' + points;
         }
 
         function saveState() {
