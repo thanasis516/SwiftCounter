@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Count The Swifts</title>
-    <style>
+<style>
     /* Βασικό στυλ για τη σελίδα */
     body {
         font-family: Arial, sans-serif;
@@ -29,26 +29,25 @@
         display: flex;
         flex-wrap: wrap; /* Επιτρέπει την αλλαγή γραμμής όταν χρειάζεται */
         justify-content: center; /* Κεντρώνει τα κουμπιά οριζόντια */
+        gap: 10px; /* Απόσταση μεταξύ των κουμπιών */
+    }
+
+    .car-container {
+        flex: 1 1 30%; /* Κάνει το κουμπί να καταλαμβάνει περίπου το 30% του πλάτους του container */
+        max-width: 150px; /* Μέγιστο πλάτος των κουμπιών */
+        box-sizing: border-box; /* Περιλαμβάνει το padding και το border στο πλάτος */
     }
 
     .car-button {
         font-size: 1em;
         padding: 10px 20px;
-        margin: 10px;
         cursor: pointer;
         border: none;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        width: 100px; /* Ύψος του κουμπιού */
-        height: 100px;
-    }
-
-    .car-container {
-        flex: 1 1 30%; /* Κάνει το κουμπί να καταλαμβάνει περίπου το 30% του πλάτους */
-        max-width: 150px; /* Μέγιστο πλάτος των κουμπιών */
-        box-sizing: border-box; /* Περιλαμβάνει το padding και το border στο πλάτος */
-        margin: 10px; /* Εξωτερική απόσταση γύρω από το κουμπί */
+        width: 100%; /* Κάνει το κουμπί να καταλαμβάνει το πλήρες πλάτος του container */
+        height: 120px; /* Ύψος του κουμπιού */
     }
 
     .actions {
@@ -58,11 +57,11 @@
     /* Εξασφαλίζει καλύτερη απόδοση σε μικρές οθόνες */
     @media (max-width: 600px) {
         .car-button {
-            width: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
-            height: 80px;
+            height: 80px; /* Μικρότερα κουμπιά για μικρότερες οθόνες */
         }
     }
 </style>
+
 </head>
 <body>
     <h1>Count The Swifts</h1>
