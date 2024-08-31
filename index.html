@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suzuki Swift Counter</title>
+    <title>Count The Swifts</title>
     <style>
         /* Βασικό στυλ για τη σελίδα */
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+        background-image: url('background.jpg'); /* Εδώ βάζεις το όνομα της εικόνας σου */
+        background-size: cover; /* Προσαρμόζει την εικόνα για να καλύψει ολόκληρη την οθόνη */
+        background-position: center; /* Κεντρώνει την εικόνα */
+        background-repeat: no-repeat; /* Αποτρέπει την επανάληψη της εικόνας */
         }
         h1 {
             color: #333;
@@ -23,9 +27,14 @@
             padding: 10px 20px;
             margin: 10px;
             cursor: pointer;
+            border: none;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 120px; /* Ανάλογα με το μέγεθος της εικόνας */
+            height: 120px; /* Ανάλογα με το μέγεθος της εικόνας */
         }
         .car-image {
-            width: 100px;
             display: block;
             margin: 0 auto;
         }
@@ -43,50 +52,49 @@
     </style>
 </head>
 <body>
-    <h1>Suzuki Swift Counter</h1>
+    <h1>Count The Swifts</h1>
     <div class="counter" id="pointsCounter">Πόντοι: 0</div>
 
-    <!-- Κουμπιά και εικόνες για διαφορετικά αυτοκίνητα -->
+    <!-- Κουμπιά και εικόνες για διαφορετικά αυτοκίνητα, ταξινομημένα κατά αύξουσα σειρά πόντων -->
     <div class="container">
         <!-- Regular -->
         <div class="car-container">
-            <img src="regular.jpg" alt="Regular Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('regular')">Regular (1p)</button>
+            <button class="car-button" id="regularButton" onclick="addPoints('regular')"></button>
+            <p>Regular (1p)</p>
         </div>
         <!-- Sport -->
         <div class="car-container">
-            <img src="sport.jpg" alt="Sport Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('sport')">Sport (2p)</button>
-        </div>
-        <!-- Super Rare Colors -->
-        <div class="car-container">
-            <img src="purple.jpg" alt="Purple Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('purple')">Purple (20p)</button>
-        </div>
-        <div class="car-container">
-            <img src="brown.jpg" alt="Brown Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('brown')">Brown (15p)</button>
-        </div>
-        <div class="car-container">
-            <img src="pink.jpg" alt="Pink Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('pink')">Pink (10p)</button>
+            <button class="car-button" id="sportButton" onclick="addPoints('sport')"></button>
+            <p>Sport (2p)</p>
         </div>
         <!-- Rare Colors -->
         <div class="car-container">
-            <img src="turquoise.jpg" alt="Turquoise Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('turquoise')">Turquoise (8p)</button>
+            <button class="car-button" id="yellowButton" onclick="addPoints('yellow')"></button>
+            <p>Yellow (5p)</p>
         </div>
         <div class="car-container">
-            <img src="green.jpg" alt="Green Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('green')">Green (7p)</button>
+            <button class="car-button" id="orangeButton" onclick="addPoints('orange')"></button>
+            <p>Orange (6p)</p>
         </div>
         <div class="car-container">
-            <img src="orange.jpg" alt="Orange Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('orange')">Orange (6p)</button>
+            <button class="car-button" id="greenButton" onclick="addPoints('green')"></button>
+            <p>Green (7p)</p>
         </div>
         <div class="car-container">
-            <img src="yellow.jpg" alt="Yellow Swift" class="car-image">
-            <button class="car-button" onclick="addPoints('yellow')">Yellow (5p)</button>
+            <button class="car-button" id="turquoiseButton" onclick="addPoints('turquoise')"></button>
+            <p>Turquoise (8p)</p>
+        </div>
+        <div class="car-container">
+            <button class="car-button" id="pinkButton" onclick="addPoints('pink')"></button>
+            <p>Pink (10p)</p>
+        </div>
+        <div class="car-container">
+            <button class="car-button" id="brownButton" onclick="addPoints('brown')"></button>
+            <p>Brown (15p)</p>
+        </div>
+        <div class="car-container">
+            <button class="car-button" id="purpleButton" onclick="addPoints('purple')"></button>
+            <p>Purple (20p)</p>
         </div>
     </div>
 
@@ -181,6 +189,23 @@
         function saveState() {
             localStorage.setItem('points', points);
             localStorage.setItem('history', JSON.stringify(history));
+        }
+
+        // Ρυθμίσεις εικόνας για κουμπιά
+        const carButtons = {
+            'regular': 'url(regular.jpg)',
+            'sport': 'url(sport.jpg)',
+            'yellow': 'url(yellow.jpg)',
+            'orange': 'url(orange.jpg)',
+            'green': 'url(green.jpg)',
+            'turquoise': 'url(turquoise.jpg)',
+            'pink': 'url(pink.jpg)',
+            'brown': 'url(brown.jpg)',
+            'purple': 'url(purple.jpg)'
+        };
+
+        for (const [key, value] of Object.entries(carButtons)) {
+            document.getElementById(`${key}Button`).style.backgroundImage = value;
         }
     </script>
 </body>
